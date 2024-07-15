@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mercado Libre Productos</title>
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+  <link href="styles.css" rel="stylesheet">
+  <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+  <script src="script.js" defer></script>
+  <style>
+    .product-card {
+      background: #fff;
+      margin-bottom: 20px; /* Margen inferior para separar cada producto */
+      padding: 20px;
+      border: 1px solid #ddd; /* Borde alrededor de cada producto */
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .product-card img {
+      max-width: 100%;
+      border-radius: 10px;
+    }
+  </style>
+</head>
+<body>
+  <header class="navbar navbar-expand-lg navbar-light" style="background-color: #FFD700;">
+    <a class="navbar-brand" href="#">
+      <img src="https://http2.mlstatic.com/frontend-assets/ui-navigation/5.18.8/mercadolibre/logo__large_plus@2x.png" alt="Mercado Libre Logo" height="50">
+    </a>
+    <form class="form-inline my-2 my-lg-0 mx-auto">
+      <input class="form-control mr-sm-2" type="search" placeholder="Buscar productos" aria-label="Buscar" id="search-input">
+      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Buscar</button>
+    </form>
+    <div class="nav-item ml-auto">
+      <a class="nav-link" href="cart.html">
+        <img src="https://img.icons8.com/?size=100&id=59997&format=png&color=000000" alt="Carrito de Compras" class="cart-img">
+      </a>
+    </div>
+  </header>
+
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-3">
+        <h3>Categorías</h3>
+        <ul id="categories-list" class="list-group">
+          <!-- Las categorías se insertarán aquí -->
+        </ul>
+      </div>
+      <div class="col-md-9">
+        <div class="row" id="product-list">
+          <!-- Los productos se insertarán aquí como tarjetas -->
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

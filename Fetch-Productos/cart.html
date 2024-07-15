@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Carrito de Compras</title>
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+  <link href="styles.css" rel="stylesheet">
+</head>
+<body>
+  <header class="navbar navbar-expand-lg navbar-light" style="background-color: #FFD700;">
+    <a class="navbar-brand" href="#">
+      <img src="https://http2.mlstatic.com/frontend-assets/ui-navigation/5.18.8/mercadolibre/logo__large_plus@2x.png" alt="Mercado Libre Logo" height="50">
+    </a>
+  </header>
+  
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-12">
+        <h3 class="mb-4">Carrito de Compras</h3>
+        <ul id="cart-list" class="list-group">
+          <!-- Aquí se insertarán los productos del carrito -->
+        </ul>
+        <div class="text-center mt-4">
+          <button id="pay-btn" class="btn btn-success mr-2">Pagar</button>
+          <button id="clear-cart-btn" class="btn btn-danger">Vaciar Carrito</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <script src="script.js" defer></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const cartList = document.getElementById('cart-list');
+      const payButton = document.getElementById('pay-btn');
+      const clearCartButton = document.getElementById('clear-cart-btn');
+
+      function displayCartItems() {
+        // Recuperar todos los elementos de localStorage que comienzan con 'product_'
+        cartList.innerHTML = ''; // Limpiar la lista antes de mostrar los productos
+
+        Object.keys(localStorage).forEach(key => {
+          if (key.startsWith('product_')) {
+            const product = JSON.parse(localStorage.getItem(key));
+            const cartItem = document.createElement('li');
+            cartItem.className = 'list-group-item d-flex justify-content-between align-items-center';
+            cartItem.innerHTML = `
+              <div class="d-flex align-items-center">
+                  <h5>${product.title}</h5>
+                  <p class="mb-1"><strong>Precio:</strong> $${product.price}</p>
+                </div>
+              </div>
+              <div>
+                <button class="btn btn-sm btn-danger delete-item-btn" data-product-id="${product.id}">Eliminar</button>
+              </div>
+            `;
+            cartList.appendChild(cartItem);
+          }
+        });
+
+        if (cartList.children.length === 0) {
+          cartList.innerHTML = '<p class="text-muted">El carrito está vacío.</p>';
+        }
+      }
+
+      function clearCart() {
+        // Limpiar todos los productos del localStorage
+        localStorage.clear();
+        // Limpiar la lista de productos mostrados
+        displayCartItems();
+      }
+
+      function deleteCartItem(productId) {
+        // Eliminar el producto del localStorage
+        localStorage.removeItem(`product_${productId}`);
+        // Actualizar la lista de productos mostrados
+        displayCartItems();
+      }
+
+      payButton.addEventListener('click', () => {
+        alert('Implementa aquí la lógica para procesar el pago.');
+        // Aquí puedes agregar la lógica para procesar el pago, como redireccionar a una página de pago, etc.
+      });
+
+      clearCartButton.addEventListener('click', () => {
+        clearCart();
+      });
+
+      cartList.addEventListener('click', event => {
+        if (event.target.classList.contains('delete-item-btn')) {
+          const productId = event.target.dataset.productId;
+          deleteCartItem(productId);
+        }
+      });
+
+      displayCartItems();
+    });
+  </script>
+</body>
+</html>

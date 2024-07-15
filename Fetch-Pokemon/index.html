@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pokédex</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container mt-5">
+        <div class="text-center">
+            <h1 class="display-4 text-primary mb-4"><i class="fas fa-gamepad"></i> Pokédex</h1>
+            <div class="input-group mb-3">
+                <input type="text" id="pokemonName" class="form-control" placeholder="Enter Pokémon name or ID">
+                <div class="input-group-append">
+                    <button class="btn btn-primary" type="button" onclick="fetchPokemon()"><i class="fas fa-search"></i> Search</button>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <div id="pokemonData"></div>
+            </div>
+            <div class="col-md-6">
+                <div id="evolutionChain"></div>
+            </div>
+        </div>
+        <div class="text-center mt-4">
+            <button class="btn btn-nav btn-primary" onclick="previousPokemon()"><i class="fas fa-arrow-left"></i> Previous</button>
+            <button class="btn btn-nav btn-primary" onclick="nextPokemon()"><i class="fas fa-arrow-right"></i> Next</button>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
